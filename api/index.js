@@ -34,10 +34,10 @@ module.exports = async (req, res) => {
       xhr.open("POST", "http://35.225.126.232/api/report", true);
       xhr.setRequestHeader('Content-type', 'application/json');
       
-      xhr.send(JSON.stringify({clientID: clientID, 
-                              email: email,
-                              url: url,
-                              message: message}));
+      xhr.send(JSON.stringify({clientID: body.clientID, 
+                              email: body.email,
+                              url: body.url,
+                              message: body.message}));
       xhr.onreadystatechange = function() {
         //console.log(xhr.readyState);
         //console.log(xhr.status);
