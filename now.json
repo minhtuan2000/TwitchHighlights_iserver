@@ -2,7 +2,7 @@
     "version": 2,
     "routes": [
         {
-            "src": "/api/terms",
+            "src": "/api/termssss",
             "methods": ["POST", "GET"],
             "dest": "/api/terms/terms.html"
           }
