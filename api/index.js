@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
       message: body.message
     })
     .then((response) => {
-      res.status(200).send(response);
+      res.status(200).send("Success");
     })
     .catch((error) => {
       res.status(200).send(error);
