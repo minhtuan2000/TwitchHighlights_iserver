@@ -3,7 +3,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     console.log("Sent terms and conditions!");
-    res.sendFile('terms.html', { root: __dirname });
+    res.send("Hello");
 });
 
 module.exports = router;
