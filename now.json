@@ -11,7 +11,7 @@
             "dest": "/api/terms/terms.html"
         }
     ],
-    "dependencies": {
-        "express": "^4.17.1"
+    "dependency": {
+        "express": "^4.17.1" 
     }
 }
