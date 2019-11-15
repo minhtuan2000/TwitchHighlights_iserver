@@ -1,3 +1,5 @@
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
 module.exports = async (req, res) => {
     const { body } = req;
     //Send a POST request to the server to analyse the video
@@ -6,7 +8,7 @@ module.exports = async (req, res) => {
     xhr.setRequestHeader('Content-type', 'application/json');
     //console.log(JSON.stringify({url: tabUrl}));
     xhr.send(JSON.stringify({clientID: body.clientID, 
-                              url: body.tabUrl, 
+                              url: body.url, 
                               isBasic: body.isBasic, 
                               n: body.n, 
                               l: (body.automode == 0)? body.l: -1, 
