@@ -11,7 +11,7 @@ app.use(express.json());
 // app.use('/privacy', require('./routers/api/privacy'));
 
 app.get('/*', function (req, res) {
-    res.sendStatus(404);
+    res.send("Hello!");
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
