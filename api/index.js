@@ -29,23 +29,25 @@ module.exports = async (req, res) => {
     
     // Report
     if (body.type === "Report"){
-      //Send a POST request with the report message
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://35.225.126.232/api/report", true);
-      xhr.setRequestHeader('Content-type', 'application/json');
+      res.send(body);
+      // //Send a POST request with the report message
+      // let xhr = new XMLHttpRequest();
+      // xhr.open("POST", "http://35.225.126.232/api/report", true);
+      // xhr.setRequestHeader('Content-type', 'application/json');
       
-      xhr.send(JSON.stringify({clientID: body.clientID, 
-                              email: body.email,
-                              url: body.url,
-                              message: body.message}));
-      xhr.onreadystatechange = function() {
-        //console.log(xhr.readyState);
-        //console.log(xhr.status);
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            res.status(200).send(xhr.responseText);
-        }
-      }
+      // xhr.send(JSON.stringify({clientID: body.clientID, 
+      //                         email: body.email,
+      //                         url: body.url,
+      //                         message: body.message}));
+      // xhr.onreadystatechange = function() {
+      //   //console.log(xhr.readyState);
+      //   //console.log(xhr.status);
+      //   if (xhr.readyState == 4 && xhr.status == 200) {
+      //       res.status(200).send(xhr.responseText);
+      //   }
+      // }
     }
+
     // PurchaseID
     // UpdatedStatus
   }
