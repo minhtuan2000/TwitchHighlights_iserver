@@ -2,14 +2,10 @@
     "version": 2,
     "routes": [
         {
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-                "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
-            },
-            "src": "/terms",
-            "dest": "/api/terms/terms.html"
-        }
+            "src": "/api/terms/index.js",
+            "methods": ["POST", "GET"],
+            "dest": "/api/terms/index.js"
+          }
     ]
 
 }
