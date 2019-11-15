@@ -2,9 +2,9 @@
     "version": 2,
     "routes": [
         {
-            "src": "/api/terms/index.js",
+            "src": "/api/terms",
             "methods": ["POST", "GET"],
-            "dest": "/api/terms/index.js"
+            "dest": "/api/terms/terms.html"
           }
     ]
 
