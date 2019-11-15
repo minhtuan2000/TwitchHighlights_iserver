@@ -10,8 +10,6 @@
             "src": "/.*",
             "dest": "/api/terms/terms.html"
         }
-    ],
-    "dependency": {
-        "express": "^4.17.1" 
-    }
+    ]
+
 }
