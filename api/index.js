@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
     })
     .then((res) => {
       console.log(`statusCode: ${res.statusCode}`);
-      res.status(200).send(res);
+      res.send(res);
     })
     .catch((error) => {
       console.error(error);
