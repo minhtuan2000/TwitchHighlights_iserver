@@ -1,11 +1,3 @@
 {
-    "version": 2,
-    "routes": [
-        {
-            "src": "/api/termssss",
-            "methods": ["POST", "GET"],
-            "dest": "/api/terms/terms.html"
-          }
-    ]
-
+    "version": 2
 }
