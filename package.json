@@ -1,5 +1,19 @@
 {
-    "dependencies": {
-      "express": "^4.17.1"
-    }
+  "name": "twitchhighlights_iserver",
+  "version": "1.0.0",
+  "description": "Intermediate server for Twitch Highlights",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minhtuan2000/TwitchHighlights_iserver.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minhtuan2000/TwitchHighlights_iserver/issues"
+  },
+  "homepage": "https://github.com/minhtuan2000/TwitchHighlights_iserver#readme",
+  "dependencies": {
+    "express": "^4.17.1"
   }
+}
