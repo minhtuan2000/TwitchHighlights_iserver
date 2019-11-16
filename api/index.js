@@ -39,5 +39,32 @@ module.exports = async (req, res) => {
   }
 
   // PurchaseID
+  if (body.type === "PurchaseID"){
+    axios.post('http://35.225.126.232/api/purchase', {
+      clientID: body.clientID, 
+      jwt: body.jwt,
+      cartId: body.cartId,
+      orderId: body.orderId
+    })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((error) => {
+      res.status(200).send(error);
+    });
+  }
+
   // UpdatedStatus
+  if (body.type === "UpdatedStatus"){
+    axios.post('http://35.225.126.232/api/status', {
+      clientID: body.clientID, 
+      license: body.license
+    })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((error) => {
+      res.status(200).send(error);
+    });
+  }
 }
