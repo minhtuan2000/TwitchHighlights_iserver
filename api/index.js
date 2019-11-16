@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
       to: body.to
     })
     .then((response) => {
-      res.status(200).send(response);
+      res.status(200).send(response.data);
     })
     .catch((error) => {
       res.status(200).send(error);
