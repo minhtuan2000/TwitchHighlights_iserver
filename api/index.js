@@ -24,13 +24,18 @@ module.exports = async (req, res) => {
   
   // Report
   if (body.type === "Report"){
-    var response = await axios.post('http://35.225.126.232/api/report', {
+    axios.post('http://35.225.126.232/api/report', {
       clientID: body.clientID, 
       email: body.email,
       url: body.url,
       message: body.message
+    })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((error) => {
+      res.status(200).send(error);
     });
-    res.status(200).send(response);
   }
 
   // PurchaseID
