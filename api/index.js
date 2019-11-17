@@ -67,4 +67,15 @@ module.exports = async (req, res) => {
       res.status(200).send(error);
     });
   }
+
+  // CheckConnection
+  if (body.type === "CheckConnection"){
+    axios.get('http://35.225.126.232/terms')
+    .then(function (response) {
+      res.status(200).send("OK");
+    })
+    .catch(function (error) {
+      res.status(200).send("Not Found!");
+    });
+  }
 }
