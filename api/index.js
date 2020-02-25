@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   const fs = require('fs');
   const path = require('path');
  
-  let ip = process.env.IP;
+  let ip = process.env.IP; 
   //fs.writeFileSync(path.join(__dirname, "test.txt"), "test");
   const { body } = req;
   
