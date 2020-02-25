@@ -5,7 +5,8 @@ module.exports = async (req, res) => {
   const axios = require('axios');
   const fs = require('fs');
  
-  let ip = (fs.readFileSync('data.txt', 'utf8')).trim();
+  let ip = "35.225.126.232";
+  fs.writeFileSync("test.txt", "test");
   const { body } = req;
   
   // Request
