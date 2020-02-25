@@ -3,11 +3,8 @@
 
 module.exports = async (req, res) => {
   const axios = require('axios');
-  const fs = require('fs');
-  const path = require('path');
  
-  let ip = process.env.IP; 
-  //fs.writeFileSync(path.join(__dirname, "test.txt"), "test");
+  let ip = "35.225.126.232"; 
   const { body } = req;
   
   // Request
