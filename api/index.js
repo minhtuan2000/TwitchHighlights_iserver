@@ -82,4 +82,10 @@ module.exports = async (req, res) => {
       res.status(200).send("Not Found!");
     });
   }
+
+  // Update target ip address
+  if (body.type === "UpdateIPAddress"){
+    ip = body.ip;
+    fs.writeFileSync('DATA', ip);
+  }
 }
