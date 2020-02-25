@@ -1,10 +1,14 @@
 module.exports = async (req, res) => {
   const axios = require('axios');
+  const fs = require('fs');
+ 
+  let ip = fs.readFileSync('DATA', 'utf8');
+  console.log(ip);
   const { body } = req;
   
   // Request
   if (body.type === "Request"){
-    axios.post('http://35.225.126.232/api/link', {
+    axios.post('http://' + ip + '/api/link', {
       clientID: body.clientID, 
       url: body.url, 
       isBasic: body.isBasic, 
@@ -24,7 +28,7 @@ module.exports = async (req, res) => {
   
   // Report
   if (body.type === "Report"){
-    axios.post('http://35.225.126.232/api/report', {
+    axios.post('http://' + ip + '/api/report', {
       clientID: body.clientID, 
       email: body.email,
       url: body.url,
@@ -40,7 +44,7 @@ module.exports = async (req, res) => {
 
   // PurchaseID
   if (body.type === "PurchaseID"){
-    axios.post('http://35.225.126.232/api/purchase', {
+    axios.post('http://' + ip + '/api/purchase', {
       clientID: body.clientID, 
       jwt: body.jwt,
       cartId: body.cartId,
@@ -56,7 +60,7 @@ module.exports = async (req, res) => {
 
   // UpdatedStatus
   if (body.type === "UpdatedStatus"){
-    axios.post('http://35.225.126.232/api/status', {
+    axios.post('http://' + ip + '/api/status', {
       clientID: body.clientID, 
       license: body.license
     })
@@ -70,7 +74,7 @@ module.exports = async (req, res) => {
 
   // CheckConnection
   if (body.type === "CheckConnection"){
-    axios.get('http://35.225.126.232/terms')
+    axios.get('http://' + ip + '/terms')
     .then(function (response) {
       res.status(200).send("OK");
     })
