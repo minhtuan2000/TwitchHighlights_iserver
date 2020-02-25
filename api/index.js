@@ -3,8 +3,34 @@
 
 module.exports = async (req, res) => {
   const axios = require('axios');
- 
+  const MongoClient = require('mongodb').MongoClient;
+
   let ip = "35.225.126.232"; 
+ 
+  try{
+    const uri = "mongodb+srv://visualnick:FcWeaD5YXLcXml1A@twitchhighlights-sslwa.gcp.mongodb.net/test?retryWrites=true&w=majority";
+    let client = new MongoClient(uri, { useNewUrlParser: true });
+    await client.connect();
+    let db = client.db("TwitchHighlightsDB");
+
+    // get the ip address
+    let res = await db.collection("IPAddress").find({
+      key: "Aloha"
+    }).toArray();
+    ip = res[0].ip;
+
+    // update read date
+    db.collection("IPAddress").updateOne({
+      key: "Aloha"
+    }, {
+      $currentDate: {lastReadDate: true}
+    });
+
+  } catch (err) {
+    //console.log(err);
+    ip = "35.225.126.232"; 
+  }
+
   const { body } = req;
   
   // Request
@@ -82,11 +108,5 @@ module.exports = async (req, res) => {
     .catch(function (error) {
       res.status(200).send("Not Found!");
     });
-  }
-
-  // Update target ip address
-  if (body.type === "UpdateIPAddress"){
-    ip = body.ip;
-    fs.writeFileSync('data.txt', ip);
   }
 }
