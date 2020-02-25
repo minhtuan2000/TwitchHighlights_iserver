@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
   const axios = require('axios');
   const fs = require('fs');
  
-  let ip = "35.225.126.232";
+  let ip = (fs.readFileSync('data.txt', 'utf8')).trim();
   const { body } = req;
   
   // Request
@@ -88,6 +88,6 @@ module.exports = async (req, res) => {
   // Update target ip address
   if (body.type === "UpdateIPAddress"){
     ip = body.ip;
-    fs.writeFileSync('DATA', ip);
+    fs.writeFileSync('data.txt', ip);
   }
 }
