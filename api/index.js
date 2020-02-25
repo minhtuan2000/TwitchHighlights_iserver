@@ -1,5 +1,5 @@
-const fs = require('fs');
-console.log(fs.readFileSync('DATA', 'utf8'));
+// const fs = require('fs');
+// console.log(fs.readFileSync('DATA', 'utf8'));
 
 module.exports = async (req, res) => {
   const axios = require('axios');
