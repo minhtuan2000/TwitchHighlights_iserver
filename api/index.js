@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   const path = require('path');
  
   let ip = "35.225.126.232";
-  fs.writeFileSync(path.join(__dirname, "test.txt"), "test");
+  //fs.writeFileSync(path.join(__dirname, "test.txt"), "test");
   const { body } = req;
   
   // Request
