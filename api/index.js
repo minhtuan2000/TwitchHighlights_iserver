@@ -1,9 +1,11 @@
+const fs = require('fs');
+console.log(fs.readFileSync('DATA', 'utf8'));
+
 module.exports = async (req, res) => {
   const axios = require('axios');
   const fs = require('fs');
  
-  let ip = fs.readFileSync('DATA', 'utf8');
-  console.log(ip);
+  let ip = "35.225.126.232";
   const { body } = req;
   
   // Request
