@@ -8,7 +8,7 @@ const connectMongoDB = async () => {
     const uri = "mongodb+srv://visualnick:FcWeaD5YXLcXml1A@twitchhighlights-sslwa.gcp.mongodb.net/test?retryWrites=true&w=majority";
     let client = new MongoClient(uri, { useNewUrlParser: true });
     await client.connect();
-    let db_cached = client.db("TwitchHighlightsDB");
+    db_cached = client.db("TwitchHighlightsDB");
   }
   return db_cached;
 }
