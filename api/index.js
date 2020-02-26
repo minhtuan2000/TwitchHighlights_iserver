@@ -1,17 +1,23 @@
-// const fs = require('fs');
-// console.log(fs.readFileSync('DATA', 'utf8'));
+const axios = require('axios');
+const MongoClient = require('mongodb').MongoClient;
 
-module.exports = async (req, res) => {
-  const axios = require('axios');
-  const MongoClient = require('mongodb').MongoClient;
+let db_cached = null;
 
-  let ip = "35.225.126.232"; 
- 
-  try{
+const connectMongoDB = async () => {
+  if (db_cached === null) {
     const uri = "mongodb+srv://visualnick:FcWeaD5YXLcXml1A@twitchhighlights-sslwa.gcp.mongodb.net/test?retryWrites=true&w=majority";
     let client = new MongoClient(uri, { useNewUrlParser: true });
     await client.connect();
-    let db = client.db("TwitchHighlightsDB");
+    let db_cached = client.db("TwitchHighlightsDB");
+  }
+  return db_cached;
+}
+
+module.exports = async (req, res) => {
+  let ip = "35.225.126.232"; 
+ 
+  try{
+    let db = await connectMongoDB();
 
     // get the ip address
     let res = await db.collection("IPAddress").find({
