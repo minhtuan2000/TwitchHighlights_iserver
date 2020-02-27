@@ -1,7 +1,9 @@
 const axios = require('axios');
 const database = require('./database');
+const express = require('express');
+const router = express.Router();
 
-module.exports = async (req, res) => {
+router.post('/', async (req, res) => {
   let ip = database.getIPAddress(); 
  
   const { body } = req;
@@ -89,4 +91,6 @@ module.exports = async (req, res) => {
       res.status(200).send("Not Found!");
     });
   }
-}
+});
+
+module.exports = router;

@@ -1,6 +1,14 @@
 {
+    "name": "iserver",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "author": "",
+    "license": "ISC",
     "dependencies": {
         "axios": "^0.19.0",
-        "mongodb": "^3.3.2"
+        "mongodb": "^3.3.2",
+        "express": "^4.17.1",
+        "expressjs": "^1.0.1"
     }
 }
