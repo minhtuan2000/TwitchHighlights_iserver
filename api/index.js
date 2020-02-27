@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
     database.appendReport(body.clientID, body.url, body.email, body.message);
     console.log("Received a report from " + body.clientID);
 
-    res.sendStatus(200);
+    res.status(200).send("OK");
 
     // axios.post('http://' + ip + '/api/report', {
     //   clientID: body.clientID, 
