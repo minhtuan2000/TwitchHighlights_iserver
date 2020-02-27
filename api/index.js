@@ -1,9 +1,8 @@
 const axios = require('axios');
-const getIPAddress = require('./database').getIPAddress;
-const appendReport = require('./database').appendReport;
+const database = require('./database');
 
 module.exports = async (req, res) => {
-  let ip = getIPAddress(); 
+  let ip = database.getIPAddress(); 
  
   const { body } = req;
   
@@ -31,7 +30,7 @@ module.exports = async (req, res) => {
   if (body.type === "Report"){
     // Intermediate server now append report directly to the database
 
-    appendReport(body.clientID, body.url, body.email, body.message);
+    database.appendReport(body.clientID, body.url, body.email, body.message);
     console.log("Received a report from " + body.clientID);
 
     res.sendStatus(200);
