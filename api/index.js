@@ -1,42 +1,10 @@
 const axios = require('axios');
-const MongoClient = require('mongodb').MongoClient;
-
-let db_cached = null;
-
-const connectMongoDB = async () => {
-  if (db_cached === null) {
-    const uri = "mongodb+srv://visualnick:FcWeaD5YXLcXml1A@twitchhighlights-sslwa.gcp.mongodb.net/test?retryWrites=true&w=majority";
-    let client = new MongoClient(uri, { useNewUrlParser: true });
-    await client.connect();
-    db_cached = client.db("TwitchHighlightsDB");
-  }
-  return db_cached;
-}
+const getIPAddress = require('./database').getIPAddress;
+const appendReport = require('./database').appendReport;
 
 module.exports = async (req, res) => {
-  let ip = "35.225.126.232"; 
+  let ip = getIPAddress(); 
  
-  try{
-    let db = await connectMongoDB();
-
-    // get the ip address
-    let res = await db.collection("IPAddress").find({
-      key: "Aloha"
-    }).toArray();
-    ip = res[0].ip;
-
-    // update read date
-    db.collection("IPAddress").updateOne({
-      key: "Aloha"
-    }, {
-      $currentDate: {lastReadDate: true}
-    });
-
-  } catch (err) {
-    //console.log(err);
-    ip = "35.225.126.232"; 
-  }
-
   const { body } = req;
   
   // Request
@@ -61,18 +29,25 @@ module.exports = async (req, res) => {
   
   // Report
   if (body.type === "Report"){
-    axios.post('http://' + ip + '/api/report', {
-      clientID: body.clientID, 
-      email: body.email,
-      url: body.url,
-      message: body.message
-    })
-    .then((response) => {
-      res.status(200).send(response.data);
-    })
-    .catch((error) => {
-      res.status(200).send(error);
-    });
+    // Intermediate server now append report directly to the database
+
+    appendReport(body.clientID, body.url, body.email, body.message);
+    console.log("Received a report from " + body.clientID);
+
+    res.sendStatus(200);
+
+    // axios.post('http://' + ip + '/api/report', {
+    //   clientID: body.clientID, 
+    //   email: body.email,
+    //   url: body.url,
+    //   message: body.message
+    // })
+    // .then((response) => {
+    //   res.status(200).send(response.data);
+    // })
+    // .catch((error) => {
+    //   res.status(200).send(error);
+    // });
   }
 
   // PurchaseID
