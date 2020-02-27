@@ -95,7 +95,7 @@ const getIPAddress = async () => {
 const axios = require('axios');
 
 module.exports = async (req, res) => {
-  let ip = getIPAddress(); 
+  let ip = await getIPAddress(); 
  
   const { body } = req;
   
