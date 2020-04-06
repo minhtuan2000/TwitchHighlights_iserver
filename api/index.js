@@ -24,8 +24,7 @@ module.exports = async (req, res) => {
     .catch((error) => {
       res.status(200).send(error);
     });
-  }
-  
+  } else  
   // Report
   if (body.type === "Report"){
     // Intermediate server now append report directly to the database
@@ -47,8 +46,7 @@ module.exports = async (req, res) => {
     // .catch((error) => {
     //   res.status(200).send(error);
     // });
-  }
-
+  } else
   // PurchaseID
   if (body.type === "PurchaseID"){
     axios.post('http://' + ip + '/api/purchase', {
@@ -63,8 +61,7 @@ module.exports = async (req, res) => {
     .catch((error) => {
       res.status(200).send(error);
     });
-  }
-
+  } else
   // UpdatedStatus
   if (body.type === "UpdatedStatus"){
     axios.post('http://' + ip + '/api/status', {
@@ -77,8 +74,7 @@ module.exports = async (req, res) => {
     .catch((error) => {
       res.status(200).send(error);
     });
-  }
-
+  } else
   // CheckConnection
   if (body.type === "CheckConnection"){
     axios.get('http://' + ip + '/terms')
@@ -88,5 +84,7 @@ module.exports = async (req, res) => {
     .catch(function (error) {
       res.status(200).send("Not Found!");
     });
-  }
+  } else 
+  // Otherwise return 404 error
+  res.status(404).send("Not found");
 }
