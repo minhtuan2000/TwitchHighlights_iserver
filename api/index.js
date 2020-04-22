@@ -75,6 +75,10 @@ module.exports = async (req, res) => {
             } else
                 // UpdatedStatus
                 if (body.type === "UpdatedStatus") {
+                    // Check if updatedStatus is valid
+                    if (body.clientID === undefined)
+                        res.status(400).send("Bad request");
+
                     axios.post('http://' + ip + '/api/status', {
                         clientID: body.clientID,
                         license: body.license
