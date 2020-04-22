@@ -4,7 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 let _db;
 
 const connectMongoDB = async () => {
-    if (_db){
+    if (_db) {
         console.log("Warning: Reconnecting to database");
         try {
             const uri = "mongodb+srv://visualnick:FcWeaD5YXLcXml1A@twitchhighlights-sslwa.gcp.mongodb.net/test?retryWrites=true&w=majority";
@@ -31,7 +31,7 @@ const connectMongoDB = async () => {
 }
 
 const getMongoDB = async () => {
-    if (_db) return _db; 
+    if (_db) return _db;
     else {
         await connectMongoDB();
         return _db;
@@ -39,26 +39,31 @@ const getMongoDB = async () => {
 }
 
 const appendReport = async (clientID, videoURL, email, message) => {
-    try{
+    try {
+        // Default
+        if (videoURL === undefined) videoURL = "";
+        if (email === undefined) email = "";
+        if (message === undefined) message = "";
+
         url = videoURL;
 
         // Writing to MongoDB
         let db = await getMongoDB();
         db.collection("ReportLog").insertOne({
-            ClientID: clientID, 
-            VideoURL: url, 
-            Email: email, 
-            Message: message, 
+            ClientID: clientID,
+            VideoURL: url,
+            Email: email,
+            Message: message,
             ReportDate: new Date()
         });
         db.collection("Client").updateOne({
             ClientID: clientID
         }, {
-            $inc: {ReportCount: 1},
-            $currentDate: {LastReportDate: true}
+            $inc: { ReportCount: 1 },
+            $currentDate: { LastReportDate: true }
         });
 
-    }catch(err){
+    } catch (err) {
         console.log("While appending report: ");
         console.error(err);
     }
@@ -66,28 +71,28 @@ const appendReport = async (clientID, videoURL, email, message) => {
 
 const getIPAddress = async () => {
     let ip = "35.225.126.232";
-    try{
+    try {
         let db = await getMongoDB();
-    
+
         // get the ip address
         let res = await db.collection("IPAddress").find({
             key: "Aloha"
         }).toArray();
         ip = res[0].ip;
-    
+
         // update read date
         db.collection("IPAddress").updateOne({
             key: "Aloha"
         }, {
-            $currentDate: {lastReadDate: true}
+            $currentDate: { lastReadDate: true }
         });
-    
+
     } catch (err) {
         console.log("While getting IP address: ");
         console.error(err);
-        ip = "35.225.126.232"; 
+        ip = "35.225.126.232";
     }
     return ip;
 }
 
-module.exports = {appendReport, getIPAddress};
+module.exports = { appendReport, getIPAddress };
