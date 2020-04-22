@@ -77,7 +77,7 @@ module.exports = async (req, res) => {
   } else
   // CheckConnection
   if (body.type === "CheckConnection"){
-    axios.get('http://' + ip + '/terms')
+    axios.get('http://' + ip + '/api/link')
     .then(function (response) {
       res.status(200).send("OK");
     })
