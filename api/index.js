@@ -20,7 +20,8 @@ module.exports = async (req, res) => {
             l: (body.automode == 0) ? body.l : -1,
             offset: body.offset,
             from: body.from,
-            to: body.to
+            to: body.to,
+            category: body.category
         })
             .then((response) => {
                 res.status(200).send(response.data);
